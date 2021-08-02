@@ -1,0 +1,1 @@
+export { selectMenu } from './static/selectMenu.js'
