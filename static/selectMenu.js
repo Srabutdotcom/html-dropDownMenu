@@ -72,7 +72,7 @@ const selectMenu=(arg={
     const cssBlob = new Blob([css], {type: 'text/css'});
     const cssLink = l.link('',{rel:'stylesheet',href:URL.createObjectURL(cssBlob),id:'linkCssSelectMenu'})
     
-    if(!linkCssSelectMenu)document.head.append(cssLink)
+    if(!window['linkCssSelectMenu'])document.head.append(cssLink)
 
     return _selectMenu
 }
