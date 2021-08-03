@@ -29,6 +29,10 @@ const thedropMenu = selectMenu({
     fn:(val)=>alert(`You click drop Menu of ${val}`) // required
 })
 ~~~
-
+# Preview
+* Drop Menu preview
+> ![dropMenu](https://user-images.githubusercontent.com/11986154/127892038-5ddf4d54-1754-4024-b1cc-28608d49efe9.PNG)
+* Select Menu preview
+> ![selectMenu](https://user-images.githubusercontent.com/11986154/127892067-e449125e-2520-4830-951c-4362c3480eaa.PNG)
 # Demo
 Demo is available by calling > deno run --allow-read --allow-net serve.js
