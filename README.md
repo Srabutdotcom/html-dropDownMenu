@@ -28,6 +28,21 @@ const thedropMenu = selectMenu({
     ],
     fn:(val)=>alert(`You click drop Menu of ${val}`) // required
 })
+// sample of drop menu
+// in this sample using icon that can toggle to cross using the help of 'data-icon' and 'data-click'
+// attribute to store icon name
+const thedropMenu = selectMenu({
+    title:'Select Me', // optional
+    button:l.div([],{'data-icon':'menu','data-click':'cross'}), // required for drop menu 
+    list:[ // required
+        {value:'First Menu'}, // no need to put active in any of these items
+        {value:'Second Menu'},
+        {value:'Third Menu'}
+    ],
+    fn:(val)=>alert(`You click drop Menu of ${val}`) // required
+})
+
+
 ~~~
 # Preview
 * Drop Menu preview

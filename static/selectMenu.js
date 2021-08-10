@@ -21,7 +21,6 @@ const selectMenu=(arg={
     })
     const buttonId = `${(title??'button').replace(/\s+/g, '')}${Date.now()}`// remove all empty space with .replace(/\s+/g, '')
     const getButton = (but)=>{
-        
         // check if but is defined
         if(but&&but instanceof Element){
             //debugger;
@@ -42,13 +41,7 @@ const selectMenu=(arg={
     const _selectMenu = l.div([menuButton,selectMenuElement],{class:'rel'})
 
     selectMenuElement.style.display ='none'
-    function hideselectMenu(e){
-        if (!e.target.matches(`#${buttonId}`)) {
-            selectMenuElement.style.display = 'none'
-            window.removeEventListener('click',hideselectMenu)
-        }
-    }
-    menuButton.addEventListener('click',(e)=>{
+    function menuButtonEvent(e){
         document.head.click()
         selectMenuElement.style.display = 'block'
         const rightAlign = selectMenuElement.offsetWidth-e.target.offsetWidth;
@@ -67,9 +60,33 @@ const selectMenu=(arg={
         const transX = Math.min(left,w-right,0)
         const transY = Math.min(top,h-bottom,0)
         selectMenuElement.style.transform = `translate(${transX}px,${transY}px)`
+        // switch icon 
+        const {click,icon} = menuButton.dataset
+        menuButton.dataset.icon = click
+        menuButton.dataset.click = icon
+        // add window click event and remove menuButton click event 
         window.addEventListener('click',hideselectMenu)
+        menuButton.removeEventListener('click',menuButtonEvent)
         event.stopPropagation();//preventing for next event
-    })
+    }
+    
+    function hideselectMenu(e){
+        //if (!e.target.matches(`#${buttonId}`)) {
+        if(e.target!==selectMenuElement){
+            selectMenuElement.style.display = 'none'
+            window.removeEventListener('click',hideselectMenu)
+            //event.stopImmediatePropagation();//preventing for next event
+            menuButton.addEventListener('click',menuButtonEvent)
+            const {click,icon} = menuButton.dataset
+            menuButton.dataset.icon = click
+            menuButton.dataset.click = icon
+            
+        }
+        
+    }
+    
+    menuButton.addEventListener('click',menuButtonEvent)
+    
     function callBack(e){
         if(activeMenu){ // to differentiate between select menu and drop menu
             e.target.classList.toggle('active')
