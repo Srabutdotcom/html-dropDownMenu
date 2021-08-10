@@ -7,24 +7,38 @@ const selectMenu=(arg={
     fn:()=>{},
     button: null // button is optional, if exist that button will be fixed
 })=>{
-
+    const {title,list,button} = arg
     let activeMenu = null
     const dropdownItem = (args)=>{
         const {value,active} = args
-        return l.li(l.div(value,{class:`dropdown-item ${active?'active':''}`, title:value}))
+        //const _title = 
+        return l.li(l.div(value,{class:`dropdown-item ${active?'active':''}`, title:value instanceof Element? value.textContent:value}))
     }
-    const {title,list,button} = arg
     const listMenu = list.map(e=>{
         const menuItem = dropdownItem({value:e.value,active:e.active})
         if(e.active)activeMenu=menuItem.firstElementChild
         return menuItem
     })
-    const selectMenuItem = title==='title'?listMenu:[
+    const buttonId = `${(title??'button').replace(/\s+/g, '')}${Date.now()}`// remove all empty space with .replace(/\s+/g, '')
+    const getButton = (but)=>{
+        
+        // check if but is defined
+        if(but&&but instanceof Element){
+            //debugger;
+            //but.classList.add('cell-controls-button')
+            but.setAttribute('id',buttonId)
+            return but
+        } else {
+            return l.div(activeMenu?.innerText??but,{class:'cell-controls-button',id:buttonId})
+        }
+    }
+    
+    const selectMenuItem = !title?listMenu:[
         l.li(l.h6(title,{class:'dropdown-header'})),
         ...listMenu]
     const selectMenuElement = l.div(selectMenuItem,{class:'dropdown-menu'})
-    const buttonId = `${title.replace(/\s+/g, ' ').trim()}${Date.now()}`
-    const menuButton = l.div(activeMenu?.innerText??button,{class:'cell-controls-button',id:buttonId})
+    
+    const menuButton = getButton(button)//l.div(activeMenu?.innerText??button,{class:'cell-controls-button',id:buttonId})
     const _selectMenu = l.div([menuButton,selectMenuElement],{class:'rel'})
 
     selectMenuElement.style.display ='none'
