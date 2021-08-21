@@ -1,4 +1,4 @@
-import {l} from "https://deno.land/x/html_dom@v1.0.1/html-dom.js"
+import {l} from "https://deno.land/x/html_dom@v1.0.2/html-dom.js"
 import {selectMenu} from './selectMenu.js'
 
 // sample of select menu
@@ -12,7 +12,7 @@ const theselectMenu = selectMenu({
     fn:(val)=>alert(`You select Menu of ${val}`)
 })
 
-document.querySelector('#selectMenu').append(theselectMenu)
+document.querySelector('#selectMenu').append(theselectMenu._selectMenu)
 
 // sample of drop menu
 const thedropMenu = selectMenu({
@@ -26,4 +26,4 @@ const thedropMenu = selectMenu({
     fn:(val)=>alert(`You click drop Menu of ${val}`)
 })
 
-document.querySelector('#dropMenu').append(thedropMenu)
+document.querySelector('#dropMenu').append(thedropMenu._selectMenu)

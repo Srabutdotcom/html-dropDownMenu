@@ -1,3 +1,7 @@
+/* const cssFile = await(()=>fetch('selectMenu.css'))()
+const cssText = await(()=>cssFile.text())()
+debugger; */
+
 const css = `
 .rel {
     position:relative;

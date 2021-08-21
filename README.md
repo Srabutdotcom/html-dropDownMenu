@@ -3,7 +3,7 @@ Simple tools to create drop down menu or select menu
 # Usage
 ~~~js
 // html element created using l library from html-dom.js
-import {l} from "https://deno.land/x/html_dom@v1.0.1/html-dom.js"
+import {l} from "https://deno.land/x/html_dom@v1.0.2/html-dom.js"
 import {selectMenu} from 'https://deno.land/x/html_selectmenu/mod.js' // please change with the latest version
 // sample of select menu
 // in this sample the button text will be adjusted based on selection
