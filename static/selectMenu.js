@@ -49,21 +49,21 @@ const selectMenu=(arg={
         // show menu element items
         selectMenuElement.style.display = 'block'
         // show close svg 
-        const close = e.target.querySelector("svg.hide")
-        const burger = e.target.querySelector("svg.disflex")
+        const close = this.querySelector("svg.hide")
+        const burger = this.querySelector("svg.disflex")
         close?.classList.toggle("hide");
         close?.classList.toggle("disflex");
         burger?.classList.toggle("hide");
         burger?.classList.toggle("disflex");
 
         // aligning with menuButton aka e.target position
-        const _rightAlign = selectMenuElement.offsetWidth-e.target.offsetWidth+e.target.offsetLeft;
-        const leftAlign = +e.target.offsetLeft
-        const _topAlign = -selectMenuElement.offsetHeight-e.target.offsetHeight+e.target.offsetTop
-        const bottomAlign = +e.target.offsetTop
+        const _rightAlign = selectMenuElement.offsetWidth-this.offsetWidth+this.offsetLeft;
+        const leftAlign = +this.offsetLeft
+        const _topAlign = -selectMenuElement.offsetHeight-this.offsetHeight+this.offsetTop
+        const bottomAlign = +this.offsetTop
         
-        const w = window.innerWidth
-        const h = window.innerHeight
+        const w = document.documentElement.clientWidth//window.innerWidth
+        const h = document.documentElement.clientHeight//window.innerHeight
         // by default we set to bottom left Align
         const xPos = leftAlign
         const yPos = bottomAlign
@@ -120,6 +120,7 @@ const selectMenu=(arg={
             debugger;
             window.removeEventListener('click',hideselectMenu)
         } */
+        //debugger;
         arg.fn(e.target.innerText,e)
     }
 
